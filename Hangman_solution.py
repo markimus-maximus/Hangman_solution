@@ -6,7 +6,7 @@ or you will get 0 for this assignment.
 import random
 from typing_extensions import Self
 
-class Hangman(word_list, num_lives=5):
+class Hangman():
          
     
     
@@ -42,29 +42,34 @@ class Hangman(word_list, num_lives=5):
     ask_letter()
         Asks the user for a letter.
     '''
-    def __init__(self, word, word_guessed, num_letters, num_lives, list_letters):
+    def __init__(self, word, word_length, word_guessed, num_letters, num_lives, list_letters):
        
         
 
         
-        self.word = word = random.choice(word_list)
-        self.word_length = len(word)
-        self.word_guessed = word_guessed
-        self.num_letters = num_letters
-        self.num_lives = num_lives
-        self.list_letters = list_letters
-            
-        word = random.choice(word_list)
-        word_length = len(word)
-        word_guessed_string = '_' * word_length
-        word_guessed = [word_guessed_string]
+        self.word = random.choice(word_list)
+         
+        self.word_length = len(self.word)
+                
+        word_guessed_string = '_' * Hangman.word_length
+        self.word_guessed = [word_guessed_string]
         
         word_set = set(word)
+        self.num_letters = len(word_set)
         
-        num_letters = len(word_set)
+        self.num_letters = num_letters
+        num_letters = len(set(word))
+       
+        self.num_lives = num_lives
+        num_lives = 5
+        
+        self.list_letters = list_letters
+        list_letters = []
+
+        
             
-    print('The mystery word has {len(self.word)} characters')
-    print(word_guessed)
+        print('The mystery word has {len(self.word)} characters')
+        print(word_guessed)
         # TODO 2: Initialize the attributes as indicated in the docstring
         # TODO 2: Print two message upon initialization:
         # 1. "The mystery word has {len(self.word)} characters" (The number of letters is NOT the UNIQUE number of letters)
@@ -148,41 +153,14 @@ class Hangman(word_list, num_lives=5):
 def play_game(word_list):
     # As an aid, part of the code is already provided:
     game = Hangman(word_list, num_lives=5)
-   
-        
+    
+    Hangman.ask_letter()
+    
 
 '''
-    A Hangman Game that asks the user for a letter and checks if it is in the word.
-    It starts with a default number of lives and a random word from the word_list.
+  
     
-    Parameters:
-    ----------
-    word_list: list
-        List of words to be used in the game
-    num_lives: int
-        Number of lives the player has
     
-    Attributes:
-    ----------
-    word: str
-        The word to be guessed picked randomly from the word_list
-    word_guessed: list
-        A list of the letters of the word, with '_' for each letter not yet guessed
-        For example, if the word is 'apple', the word_guessed list would be ['_', '_', '_', '_', '_']
-        If the player guesses 'a', the list would be ['a', '_', '_', '_', '_']
-    num_letters: int
-        The number of UNIQUE letters in the word that have not been guessed yet
-    num_lives: int
-        The number of lives the player has
-    list_letters: list
-        A list of the letters that have already been tried
-    Methods:
-    -------
-    check_letter(letter)
-        Checks if the letter is in the word.
-    ask_letter()
-        Asks the user for a letter.
-    '''
         
     # TODO 1: To test this task, you can call the ask_letter method
     # TODO 2: To test this task, upon initialization, two messages should be printed 
@@ -192,7 +170,7 @@ def play_game(word_list):
     # If the user guesses the word, print "Congratulations, you won!"
     # If the user runs out of lives, print "You ran out of lives. The word was {word}"
 
-    
+'''   
 
 if __name__ == '__main__':
     word_list = ['apple', 'banana', 'orange', 'pear', 'strawberry', 'watermelon']
