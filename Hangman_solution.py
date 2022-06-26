@@ -59,7 +59,28 @@ class Hangman:
     
 
     def check_letter(self, letter) -> None:
-       if letter in word
+           
+        #find_index_start sets the start letter of the index to 0, this changes at the bottom of the loop because the .find function only returns the first index 
+        find_index_start = 0
+        matched_indices = []
+        # This function determines if the letter is in the word and returns the first index in the string
+        word_index_2 = word.find(letter, find_index_start)
+        #if the find function returns -1 then that means the letter is not in the word
+
+        if word_index_2 > -1:
+            print('Nice! "',letter,'" is in the word!')
+            #the while loop continues as long as the find_index_start is lower than the length of the word
+            while find_index_start < len(word):
+                #the word_index is defined based on the find function output to finding indices in the word 
+                word_index = word.find(letter, find_index_start)
+                 #gets the next iteration of the .find function to restart by adding one to the start of the next search by adding 1 to the last index
+                find_index_start = word_index + 1
+                #the loop will carry on unless the loop is broken, this can be achieved when the starting index is greater
+                #than the last matching letter because the find function will return a -1, this is to know to stop the loop. 
+                if word_index == -1:
+                    break
+                #appends each iteration of the index matched indices into a list 
+                matched_indices.append(word_index) 
        
         '''
        
@@ -78,16 +99,24 @@ class Hangman:
         # Be careful! A letter can contain the same letter more than once. TIP: Take a look at the index() method in the string class
         pass
 
-    def ask_letter(self):
-               
+    def ask_letter():
+           
         while True:
-            letter = input("Which letter do you choose")
-            letter_length = len(letter)
-            if letter_length == 1:                  
-                break
-            elif letter_length > 1 : print('Please, enter just one character')
-        
-        return lett r
+            letter_input_from_user = (input("Which letter do you choose"))
+            letter_length = len(letter_input_from_user)
+            letter = letter_input_from_user.lower()
+            word_index_ask_letter = word.find(letter, 0)
+            
+            if letter_length > 1 : 
+                print('Please, enter just one character')
+            elif  letter in word:
+                check_letter(letter)
+            elif letter in word_list:
+                print('"{}" was already tried'.format(letter))
+            elif word_index_ask_letter == -1:
+                print('Sorry, "', letter, '" is not in the word.')
+                print('You have',num_lives-1,'lives left')
+                num_lives - 1
        
         
         '''
