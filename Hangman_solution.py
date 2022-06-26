@@ -6,7 +6,7 @@ or you will get 0 for this assignment.
 import random
 from typing_extensions import Self
 
-class Hangman:
+class Hangman(word_list, num_lives=5):
          
     
     
@@ -42,13 +42,26 @@ class Hangman:
     ask_letter()
         Asks the user for a letter.
     '''
-    def __init__(self, word_list, num_lives=5):
+    def __init__(self, word, word_guessed, num_letters, num_lives, list_letters):
        
+        
+
+        
+        self.word = word = random.choice(word_list)
+        self.word_length = len(word)
+        self.word_guessed = word_guessed
+        self.num_letters = num_letters
         self.num_lives = num_lives
-
-        self.word_list = word_list
-
-
+        self.list_letters = list_letters
+            
+        word = random.choice(word_list)
+        word_length = len(word)
+        word_guessed_string = '_' * word_length
+        word_guessed = [word_guessed_string]
+        
+        word_set = set(word)
+        
+        num_letters = len(word_set)
             
     print('The mystery word has {len(self.word)} characters')
     print(word_guessed)
@@ -58,7 +71,7 @@ class Hangman:
         # 2. {word_guessed}
     
 
-    def check_letter(self, letter) -> None:
+    def check_letter(self, letter):
            
         #find_index_start sets the start letter of the index to 0, this changes at the bottom of the loop because the .find function only returns the first index 
         find_index_start = 0
@@ -99,7 +112,7 @@ class Hangman:
         # Be careful! A letter can contain the same letter more than once. TIP: Take a look at the index() method in the string class
         pass
 
-    def ask_letter():
+    def ask_letter(self):
            
         while True:
             letter_input_from_user = (input("Which letter do you choose"))
@@ -135,7 +148,42 @@ class Hangman:
 def play_game(word_list):
     # As an aid, part of the code is already provided:
     game = Hangman(word_list, num_lives=5)
-    Hangman.ask_letter(Self)
+   
+        
+
+'''
+    A Hangman Game that asks the user for a letter and checks if it is in the word.
+    It starts with a default number of lives and a random word from the word_list.
+    
+    Parameters:
+    ----------
+    word_list: list
+        List of words to be used in the game
+    num_lives: int
+        Number of lives the player has
+    
+    Attributes:
+    ----------
+    word: str
+        The word to be guessed picked randomly from the word_list
+    word_guessed: list
+        A list of the letters of the word, with '_' for each letter not yet guessed
+        For example, if the word is 'apple', the word_guessed list would be ['_', '_', '_', '_', '_']
+        If the player guesses 'a', the list would be ['a', '_', '_', '_', '_']
+    num_letters: int
+        The number of UNIQUE letters in the word that have not been guessed yet
+    num_lives: int
+        The number of lives the player has
+    list_letters: list
+        A list of the letters that have already been tried
+    Methods:
+    -------
+    check_letter(letter)
+        Checks if the letter is in the word.
+    ask_letter()
+        Asks the user for a letter.
+    '''
+        
     # TODO 1: To test this task, you can call the ask_letter method
     # TODO 2: To test this task, upon initialization, two messages should be printed 
     # TODO 3: To test this task, you call the ask_letter method and check if the letter is in the word
@@ -144,8 +192,9 @@ def play_game(word_list):
     # If the user guesses the word, print "Congratulations, you won!"
     # If the user runs out of lives, print "You ran out of lives. The word was {word}"
 
-    pass
+    
 
 if __name__ == '__main__':
     word_list = ['apple', 'banana', 'orange', 'pear', 'strawberry', 'watermelon']
+    
     play_game(word_list)
