@@ -7,6 +7,9 @@ import random
 from typing_extensions import Self
 
 class Hangman:
+         
+    
+    
     '''
     A Hangman Game that asks the user for a letter and checks if it is in the word.
     It starts with a default number of lives and a random word from the word_list.
@@ -40,14 +43,26 @@ class Hangman:
         Asks the user for a letter.
     '''
     def __init__(self, word_list, num_lives=5):
+       
+        self.num_lives = num_lives
+
+        self.word_list = word_list
+
+
+            
+    print('The mystery word has {len(self.word)} characters')
+    print(word_guessed)
         # TODO 2: Initialize the attributes as indicated in the docstring
         # TODO 2: Print two message upon initialization:
         # 1. "The mystery word has {len(self.word)} characters" (The number of letters is NOT the UNIQUE number of letters)
         # 2. {word_guessed}
-        pass
+    
 
     def check_letter(self, letter) -> None:
+       if letter in word
+       
         '''
+       
         Checks if the letter is in the word.
         If it is, it replaces the '_' in the word_guessed list with the letter.
         If it is not, it reduces the number of lives by 1.
@@ -72,8 +87,9 @@ class Hangman:
                 break
             elif letter_length > 1 : print('Please, enter just one character')
         
-        return letter
+        return lett r
        
+        
         '''
         Asks the user for a letter and checks two things:
         1. If the letter has already been tried
