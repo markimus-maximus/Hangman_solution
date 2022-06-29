@@ -116,9 +116,11 @@ class Hangman():
 
        
 
-        print(self.word_guessed) 
+        print(self.word_guessed)
+        print('You still have',self.num_lives,'lives left')
         '''
-       
+       a
+
         Checks if the letter is in the word.
         If it is, it replaces the '_' in the word_guessed list with the letter.
         If it is not, it reduces the number of lives by 1.
@@ -150,6 +152,7 @@ class Hangman():
                 print('Please, only letters')
             elif letter in self.list_letters:
                 print('"{}" was already tried'.format(letter))
+                print('You still have',self.num_lives,'lives left')
             elif  letter in self.word:
                 self.num_letters-=1
                 self.check_letter(letter)
