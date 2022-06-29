@@ -4,6 +4,8 @@ The prints have to contain the same text as indicated, don't add any more prints
 or you will get 0 for this assignment.
 '''
 import random
+from re import L
+from tkinter import Y
 from typing_extensions import Self
 
 class Hangman():
@@ -42,6 +44,7 @@ class Hangman():
         Asks the user for a letter.
     '''
     def __init__(self, word_list, num_lives):
+        
        
         
     # If the attribute is a parameter which is required for future instances of the game, you can just say self.parameter = parameter. In this example it is word_list and num_lives
@@ -49,16 +52,17 @@ class Hangman():
 
         self.word = random.choice(word_list)
          
-        self.word_length = len(self.word)
-                
         word_length = len(self.word)
+                
+        
         self.word_guessed = list('_' * word_length)
 
         
-        self.word_set = set(self.word)
-        self.num_letters = len(self.word_set)
-        
         self.num_letters = len(set(self.word))
+        
+        
+        
+        
                
         self.num_lives = num_lives
         
@@ -110,7 +114,7 @@ class Hangman():
         for i in range(len(matched_indices)):         
             self.word_guessed[matched_indices[i]] = letter2[i]
 
-        print(matched_indices)
+       
 
         print(self.word_guessed) 
         '''
@@ -133,23 +137,30 @@ class Hangman():
     def ask_letter(self):
            
         while True:
+          
             letter_input_from_user = (input("Which letter do you choose"))
             letter_length = len(letter_input_from_user)
             letter = letter_input_from_user.lower()
             word_index_ask_letter = self.word.find(letter, 0)
             
+            
             if letter_length > 1 : 
                 print('Please, enter just one character')
             elif letter_length == 0:
                 print('Please, only letters')
-            elif  letter in self.word:
-                self.check_letter(letter)
-            elif letter in self.word_list:
+            elif letter in self.list_letters:
                 print('"{}" was already tried'.format(letter))
+            elif  letter in self.word:
+                self.num_letters-=1
+                self.check_letter(letter)
+                self.list_letters.append(letter)
             elif word_index_ask_letter == -1:
                 print('Sorry, "', letter, '" is not in the word.')
                 print('You have',self.num_lives-1,'lives left')
-                self.num_lives -= 1
+                self.list_letters.append(letter)
+                self.num_lives-=1
+            
+            return letter
        
         
         '''
@@ -170,10 +181,19 @@ def play_game(word_list):
     game = Hangman(word_list, num_lives=5)
     while game.num_lives > 0 and game.num_letters > 0:
         game.ask_letter()
-    if game.num_lives == 0: 
-        print('Sorry, you lose :-(')
-    if '_' not in game.word_guessed:
-        print('Congratulations, you win!')
+        if game.num_lives == 0: 
+            print('Sorry, you lose :-(')
+        elif game.num_letters == 0:
+            print('Congratulations, you win!')
+    
+
+
+    
+            
+        
+        
+
+    
     
     
     
