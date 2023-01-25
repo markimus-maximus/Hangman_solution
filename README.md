@@ -7,15 +7,19 @@ A game of Hangman based on a list of pre-determined (and adaptable) list. The co
  Class attributes:
     `word: str`
         The word to be guessed picked randomly from the word_list
+    
     `word_guessed: list`
         A list of the letters of the word, with '_' for each letter not yet guessed
         For example, if the word is 'apple', the word_guessed list would be ['_', '_', '_', '_', '_']
         If the player guesses 'a', the list would be ['a', '_', '_', '_', '_']
-    `num_letters: int`
+   
+   `num_letters: int`
         The number of UNIQUE letters in the word that have not been guessed yet
-    `num_lives: int`
+   
+   `num_lives: int`
         The number of lives the player has
-    `list_letters: list`
+   
+   `list_letters: list`
         A list of the letters that have already been tried
     
 
