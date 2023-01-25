@@ -9,9 +9,7 @@ A game of Hangman based on a list of pre-determined (and adaptable) list. The co
         The word to be guessed picked randomly from the word_list
     
     `word_guessed: list`
-        A list of the letters of the word, with '_' for each letter not yet guessed
-        For example, if the word is 'apple', the word_guessed list would be ['_', '_', '_', '_', '_']
-        If the player guesses 'a', the list would be ['a', '_', '_', '_', '_']
+        A list of the letters of the word, with '_' for each letter not yet guessed. For example, if the word is 'apple', the word_guessed list would be ['_', '_', '_', '_', '_']. If the player guesses 'a', the list would be ['a', '_', '_', '_', '_']
    
    `num_letters: int`
         The number of UNIQUE letters in the word that have not been guessed yet
@@ -21,9 +19,8 @@ A game of Hangman based on a list of pre-determined (and adaptable) list. The co
    
    `list_letters: list`
         A list of the letters that have already been tried
-    
 
-There are different methods in this game; `ask_letter`, `check letter`, `play game`.
+There are different methods in this game; `ask_letter`, `check_letter`, `play_game`.
 
 Ask letter asks for input from the user and accordingly carries out checks such as is the input a single letter, is the input a letter (as opposed to other characters), is the letter in the word. If the letter is in the word it sends the letter to the check_letter function which then iteratively checks through each position in the word and confirms if there is a match with the letter. If there is, the find function stops (only find one match in a list), so the start index of the find function needs to be started again at matched index +1.
 
